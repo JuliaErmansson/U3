@@ -1,11 +1,13 @@
 "use strict"
 
+let allTheCourses = DATABASE.courses;
+
 function renderCourse (course){
     let div = document.createElement('div')
     div.id = "container"
     div.innerHTML = 
-    `<header>${course.title} (${course.totalCredits} credits)}</header>
-    <h4> Course Responsible:     Teachers: </h4>'
+    `<h1>${course.title} (${course.totalCredits} credits)</h1>
+    <h4> Course Responsible:     Teachers: </h4>
     <div id = "teachers">
 
     </div>
@@ -14,6 +16,7 @@ function renderCourse (course){
 
     </div>
     `
+    return div
 }
 
 function renderCourses (courses) {
@@ -24,3 +27,5 @@ function renderCourses (courses) {
       coursesElement.appendChild(courseElement)
     }
   }
+
+  renderCourses(allTheCourses)
