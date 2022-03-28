@@ -51,28 +51,60 @@ function allStudentCourses (student) {
   let courseArray = []
 
   for (let i = 0; i < theCourses.length; i++) {
-    let div = document.createElement("div")
-    if(student.courses[i].passedCredits == allCourses[student.courses[i].courseId].totalCredits){
-      let content = div.innerHTML = `
+    let div = document.createElement('div')
+    if (
+      student.courses[i].passedCredits ==
+      allCourses[student.courses[i].courseId].totalCredits
+    ) {
+      let content = (div.innerHTML = `
       <div id = "done"
       <h4>${allCourses[i].title}</h4> 
-      <p> ${student.courses[i].started.semester} ${student.courses[i].started.year} ( ${student.courses[i].passedCredits} of ${allCourses[student.courses[i].courseId].totalCredits} credits)
+      <p> ${student.courses[i].started.semester} ${
+        student.courses[i].started.year
+      } ( ${student.courses[i].passedCredits} of ${
+        allCourses[student.courses[i].courseId].totalCredits
+      } credits)
       </div>
-      `
+      `)
       courseArray.push(content)
-    } 
-    else {
-      let content = div.innerHTML = `
+    } else {
+      let content = (div.innerHTML = `
       <div id = "notdone"
       <h4>${allCourses[i].title}</h4> 
-      <p> ${student.courses[i].started.semester} ${student.courses[i].started.year} ( ${student.courses[i].passedCredits} of ${allCourses[student.courses[i].courseId].totalCredits} credits)
+      <p> ${student.courses[i].started.semester} ${
+        student.courses[i].started.year
+      } ( ${student.courses[i].passedCredits} of ${
+        allCourses[student.courses[i].courseId].totalCredits
+      } credits)
       </div>
-      `
+      `)
       courseArray.push(content)
     }
-    
   }
- return courseArray.toString().split(",").join("");
+  return courseArray
+    .toString()
+    .split(',')
+    .join('')
 }
+
+
+
+function onKeyUp () {
+  let studentArray = [] 
+  let input = document.getElementById("searchBar")
+  for (let i = 0; i < allStudents.length; i++) {
+    document.querySelector("#container").innerHTML = ""
+    if ("" == input.value) {
+      document.querySelector("#container").innerHTML = ""
+    } else if (allStudents[i].lastName.toLowerCase().includes(input.value)) {
+      studentArray.push(allStudents[i]);
+    }
+  }
+
+  renderStudents(studentArray)
+}
+
+
+document.getElementById("searchBar").addEventListener("keyup", onKeyUp)
 
 
