@@ -100,7 +100,15 @@ function onKeyUp () {
       studentArray.push(allStudents[i]);
     }
   }
-
+studentArray.sort((a, b) =>{
+      if (a.lastName > b.lastName){
+        return 1
+      }
+      if (a.lastName > b.lastName){
+        return -1
+      }
+    })
+    
   renderStudents(studentArray)
 }
 
