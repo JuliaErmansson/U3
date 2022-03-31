@@ -11,17 +11,17 @@ function renderCourse (course){
     div.id = "container"
     div.innerHTML = 
     `<h1>${course.title} (${course.totalCredits} credits)</h1>
+    <h2> Course Responsible:  </h2>
     <div id = "res">
-    <h4> Course Responsible:  </h4>
-    <div> ${courseRes(id)} </div>
+    <div> <p>${courseRes(id)}</p> </div>
     </div>
-    <div id = "teachers">
-    <h4> Teachers: </h4> 
+    <h2> Teachers: </h2> 
+     <div id = "teachers">
     <div>  ${courseTeacher(course)} </div>
     </div>
-    <h4> Students: </h4>
+    <h3> Students: </h3>
     <div id = "students">
-    ${allStudents()}
+    ${allStudents(course)}
     </div>
     `
     return div
@@ -63,45 +63,43 @@ function renderCourses (courses) {
   }
   
 
-  function allStudents(){/*
+  function allStudents(thisCourse){
+    let allCourseStudents = allTheStudents.filter((student) => student.courses.some((course) => course.courseId == thisCourse.courseId))
     let theStudents = []
-
-  for (let i = 0; i < allTheCourses.length; i++) {
-    let Id = course[i].courseId
-    theStudents.push(allTheStudents[Id])
-  }
-    let studentArray = []
-
-    for (let i = 0; i < theStudents.length; i++) {
-        let div = document.createElement('div')
+      let div = document.createElement('div')
+    for ( let student of allCourseStudents) {
+      let idGetCourse = student.courses.filter((course) => course.courseId == thisCourse.courseId);
+      console.log(idGetCourse)
+      for(let a = 0; a < idGetCourse.length; a++){ 
         if (
-          student.courses[i].passedCredits ==
-          allCourses[student.courses[i].courseId].totalCredits
+          idGetCourse[a].passedCredits ==
+          allTheCourses[idGetCourse[a].courseId].totalCredits
         ) {
           let content = (div.innerHTML = `
           <div id = "done"
-          <h2>${allTheStudents[i].firstName} ${allTheStudents[i].lastName} (${allTheStudents[i].title}) </h2> 
-          <p> ${student.courses[i].started.semester} ${student.courses[i].started.year} </p>
+          <h2>${student.firstName} ${student.lastName} (${idGetCourse[a].passedCredits} credits) </h2> 
+          <p> ${idGetCourse[a].started.semester} ${idGetCourse[a].started.year} </p>
           </div>
           `)
-          studentArray.push(content)
+          theStudents.push(content)
         } 
         else {
           let content = (div.innerHTML = `
           <div id = "notdone"
-          <h2>${allTheStudents[i].firstName} ${allTheStudents[i].lastName} (${allTheStudents[i].title}) </h2> 
-          <p> ${student.courses[i].started.semester} ${student.courses[i].started.year} </p>
+          <h2>${student.firstName} ${student.lastName} (${idGetCourse[a].passedCredits} credits) </h2> 
+          <p> ${idGetCourse[a].started.semester} ${idGetCourse[a].started.year} </p>
           </div>
           `)
-            studentArray.push(content)
+            theStudents.push(content)
         }
-      }
-      return studentArray
+      }}
+      return theStudents
         .toString()
         .split(',')
-        .join('')*/
+        .join('')
     }
     
+    //en funktion som gör så att man kan söka på kurstiteln
     function onKeyUp () {
       let courseArray = [] 
       let input = document.getElementById("searchBar")
@@ -112,8 +110,20 @@ function renderCourses (courses) {
         } else if (allTheCourses[i].title.toLowerCase().includes(input.value)) {
           courseArray.push(allTheCourses[i]);
         }
+       
       }
-    
+       //gör så att kurstitlarna hamnar i bokstavsordning när man söker på dem
+     courseArray.sort((a, b) =>{
+          if (a.title > b.title){
+            return 1
+          }
+          if (a.title > b.title){
+            return -1
+          }
+          return 0
+        })
+
+
       renderCourses(courseArray)
     }
     
