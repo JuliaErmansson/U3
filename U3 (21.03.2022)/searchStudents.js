@@ -26,6 +26,7 @@ function renderStudents (students) {
   }
 }
 
+//en funktion som räknar ihop alla studentens credits
 function studentCredits (student) {
   let credits = []
 
@@ -40,6 +41,7 @@ function studentCredits (student) {
   return creditSum
 }
 
+//en funktion som visar alla studenternas kurser
 function allStudentCourses (student) {
   let theCourses = []
 
@@ -88,7 +90,7 @@ function allStudentCourses (student) {
 }
 
 
-
+//en funktion som gör så att man kan söka på efternamnen 
 function onKeyUp () {
   let studentArray = [] 
   let input = document.getElementById("searchBar")
@@ -100,6 +102,7 @@ function onKeyUp () {
       studentArray.push(allStudents[i]);
     }
   }
+  //gör så att efternamnen hamnar i bokstavsordning när man söker på dem
 studentArray.sort((a, b) =>{
       if (a.lastName > b.lastName){
         return 1
@@ -107,12 +110,30 @@ studentArray.sort((a, b) =>{
       if (a.lastName > b.lastName){
         return -1
       }
+      return 0
     })
-    
+
   renderStudents(studentArray)
 }
 
-
 document.getElementById("searchBar").addEventListener("keyup", onKeyUp)
+
+let selector = document.querySelector("#theme-select");
+let cssLink = document.querySelector("#theme-color")
+
+selector.addEventListener("change", changeTheme);
+
+function changeTheme(){
+    cssLink.href = `${selector.value}.css`
+    console.log(cssLink.href)
+    localStorage.setItem("theme", selector.value);
+}
+
+function setTheme(){
+    let theme = localStorage.getItem("theme");
+    cssLink.href = `${theme}.css`;
+}
+
+setTheme()
 
 

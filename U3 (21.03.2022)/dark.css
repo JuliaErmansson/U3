@@ -1,0 +1,44 @@
+body {
+  background-color: black;
+  color: white;
+}
+
+#container {
+  background-color: gray;
+  border-radius: 10px;
+  border: solid lightgray 3px;
+  filter: drop-shadow(8px 5px 5px black);
+  margin: 10px;
+  color: white;
+}
+
+#done {
+  background-color: teal;
+  border-radius: 10px;
+  border: solid gray 3px;
+  color: white;
+  margin: 2px;
+}
+
+#notdone {
+  background-color: darkgray;
+  border-radius: 10px;
+  border: solid gray 3px;
+  margin: 2px;
+  color: black;
+}
+
+#res {
+  background-color: darkred;
+  border-radius: 10px;
+  border: solid gray 3px;
+  display: flex;
+  flex-shrink: 1;
+}
+
+#teachers > div{
+    background-color: teal;
+border-radius: 10px;
+border: solid gray 3px;
+color: black;
+}

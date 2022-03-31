@@ -131,3 +131,21 @@ function renderCourses (courses) {
     document.getElementById("searchBar").addEventListener("keyup", onKeyUp)
     
     renderCourses(allTheCourses)
+
+let selector = document.querySelector("#theme-select");
+let cssLink = document.querySelector("#theme-color")
+
+selector.addEventListener("change", changeTheme);
+
+function changeTheme(){
+    cssLink.href = `${selector.value}.css`
+    console.log(cssLink.href)
+    localStorage.setItem("theme", selector.value);
+}
+
+function setTheme(){
+    let theme = localStorage.getItem("theme");
+    cssLink.href = `${theme}.css`;
+}
+
+setTheme()
