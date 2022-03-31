@@ -91,53 +91,50 @@ function allStudentCourses (student) {
     .join('')
 }
 
-
-//en funktion som gör så att man kan söka på efternamnen 
+//en funktion som gör så att man kan söka på efternamnen
 function onKeyUp () {
-  let studentArray = [] 
-  let input = document.getElementById("searchBar")
+  let studentArray = []
+  let input = document.getElementById('searchBar')
   for (let i = 0; i < allStudents.length; i++) {
-    document.querySelector("#container").innerHTML = ""
-    if ("" == input.value) {
-      document.querySelector("#container").innerHTML = ""
+    document.querySelector('#container').innerHTML = ''
+    if ('' == input.value) {
+      document.querySelector('#container').innerHTML = ''
     } else if (allStudents[i].lastName.toLowerCase().includes(input.value)) {
-      studentArray.push(allStudents[i]);
+      studentArray.push(allStudents[i])
     }
   }
   //gör så att efternamnen hamnar i bokstavsordning när man söker på dem
-studentArray.sort((a, b) =>{
-      if (a.lastName > b.lastName){
-        return 1
-      }
-      if (a.lastName > b.lastName){
-        return -1
-      }
-      return 0
-    })
+  studentArray.sort((a, b) => {
+    if (a.lastName > b.lastName) {
+      return 1
+    }
+    if (a.lastName > b.lastName) {
+      return -1
+    }
+    return 0
+  })
 
   renderStudents(studentArray)
 }
 
-document.getElementById("searchBar").addEventListener("keyup", onKeyUp)
+document.getElementById('searchBar').addEventListener('keyup', onKeyUp)
 
-//mörkt tema 
+//mörkt tema
 
-let selector = document.querySelector("#theme-select");
-let cssLink = document.querySelector("#theme-color")
+let selector = document.querySelector('#theme-select')
+let cssLink = document.querySelector('#theme-color')
 
-selector.addEventListener("change", changeTheme);
+selector.addEventListener('change', changeTheme)
 
-function changeTheme(){
-    cssLink.href = `${selector.value}.css`
-    console.log(cssLink.href)
-    localStorage.setItem("theme", selector.value);
+function changeTheme () {
+  cssLink.href = `${selector.value}.css`
+  console.log(cssLink.href)
+  localStorage.setItem('theme', selector.value)
 }
 
-function setTheme(){
-    let theme = localStorage.getItem("theme");
-    cssLink.href = `${theme}.css`;
+function setTheme () {
+  let theme = localStorage.getItem('theme')
+  cssLink.href = `${theme}.css`
 }
 
 setTheme()
-
-

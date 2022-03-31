@@ -36,9 +36,9 @@ body {
   flex-shrink: 1;
 }
 
-#teachers > div{
-    background-color: teal;
-border-radius: 10px;
-border: solid gray 3px;
-color: black;
+#teachers > div {
+  background-color: teal;
+  border-radius: 10px;
+  border: solid gray 3px;
+  color: black;
 }
