@@ -1,5 +1,7 @@
 "use strict"
 
+//Github repository: https://github.com/JuliaErmansson/U3
+
 let allTheCourses = DATABASE.courses;
 let allTheStudents = DATABASE.students;
 let allTheTeachers = DATABASE.teachers;
@@ -26,7 +28,7 @@ function renderCourse (course){
     `
     return div
 }
-//
+
 function renderCourses (courses) {
     let coursesElement = document.getElementById("container")
   
@@ -36,6 +38,7 @@ function renderCourses (courses) {
     }
   }
 
+//En funktion som visar kursens kursansvarig
   function courseRes(id){
     let theCourse = DATABASE.courses[id];
     let resName = allTheTeachers.map((teacher) => teacher.firstName + " " + teacher.lastName + " " + `(${teacher.post})`);
@@ -44,7 +47,7 @@ function renderCourses (courses) {
 
   }
   
-
+//En funktion som visar kursens lärare
   function courseTeacher(course){
     let teachersArray = []
       let div = document.createElement('div') 
@@ -62,14 +65,13 @@ function renderCourses (courses) {
     return teachersArray.toString().split(",").join(" ")
   }
   
-
+//En funktion som visar vilka elever som går kursen
   function allStudents(thisCourse){
     let allCourseStudents = allTheStudents.filter((student) => student.courses.some((course) => course.courseId == thisCourse.courseId))
     let theStudents = []
       let div = document.createElement('div')
     for ( let student of allCourseStudents) {
       let idGetCourse = student.courses.filter((course) => course.courseId == thisCourse.courseId);
-      console.log(idGetCourse)
       for(let a = 0; a < idGetCourse.length; a++){ 
         if (
           idGetCourse[a].passedCredits ==
@@ -131,6 +133,8 @@ function renderCourses (courses) {
     document.getElementById("searchBar").addEventListener("keyup", onKeyUp)
     
     renderCourses(allTheCourses)
+
+// mörkt tema
 
 let selector = document.querySelector("#theme-select");
 let cssLink = document.querySelector("#theme-color")

@@ -1,5 +1,7 @@
 'use strict'
 
+//Github repository: https://github.com/JuliaErmansson/U3
+
 let allStudents = DATABASE.students
 let allCourses = DATABASE.courses
 
@@ -117,6 +119,8 @@ studentArray.sort((a, b) =>{
 }
 
 document.getElementById("searchBar").addEventListener("keyup", onKeyUp)
+
+//mörkt tema 
 
 let selector = document.querySelector("#theme-select");
 let cssLink = document.querySelector("#theme-color")

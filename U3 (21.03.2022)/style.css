@@ -18,3 +18,60 @@ filter: drop-shadow(8px 5px 5px black);
 margin: 10px;
 color: white;
 }
+
+#courses{
+display: flex;
+flex-shrink: 10px;
+margin: 5px;
+padding: 5px;
+flex-wrap: wrap;
+
+}
+
+#done{
+background-color: lightgreen;
+border-radius: 10px;
+border: solid gray 3px;
+color: black;
+margin: 2px;
+}
+
+#notdone{
+background-color: darkblue;
+border-radius: 10px;
+border: solid gray 3px;
+margin: 2px;
+}
+
+#students {
+    display: flex;
+    flex-shrink: 10px;
+    margin: 5px;
+    padding: 5px;
+    flex-wrap: wrap;
+}
+
+#res{
+    background-color: red;
+border-radius: 10px;
+border: solid gray 3px;
+display: flex;
+ flex-shrink: 1;
+}
+
+#res > div {
+    display: flex;
+    flex-shrink: 1;
+ }
+
+ #res > div > p{
+    display: flex;
+    flex-shrink: 1;
+ }
+ 
+
+#teachers > div{
+    background-color: darkblue;
+border-radius: 10px;
+border: solid gray 3px;
+}
